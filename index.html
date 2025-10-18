@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced To-Do WebApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="CSS/Style.css">
+</head>
+<body>
+
+    <div class="app-wrapper">
+
+        <nav class="app-nav">
+            <div class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 6.002H8c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-4.5"/>
+                    <path d="m18.5 2.5-3 3-1.5-1.5"/>
+                    <path d="M3 13.002h2"/>
+                    <path d="M3 9.002h2"/>
+                    <path d="M3 5.002h2"/>
+                </svg>
+                <span>TaskMaster</span>
+            </div>
+        </nav>
+
+        <header class="dashboard">
+            <div class="dashboard-card">
+                <h3>Total Tugas</h3>
+                <span class="value" id="total-tasks-val">0</span>
+            </div>
+            <div class="dashboard-card">
+                <h3>Selesai</h3>
+                <span class="value" id="completed-tasks-val">0</span>
+            </div>
+            <div class="dashboard-card">
+                <h3>Belum Selesai</h3>
+                <span class="value" id="pending-tasks-val">0</span>
+            </div>
+            <div class="dashboard-card">
+                <h3>Progres</h3>
+                <span class="value" id="progress-val">0%</span>
+            </div>
+        </header>
+
+        <main class="container">
+            <form id="todo-form">
+                <div class="form-group">
+                    <input type="text" id="todo-input" placeholder="Tambahkan tugas baru..." autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <input type="datetime-local" id="todo-date">
+                </div>
+                <button type="submit" class="btn btn-add">+</button>
+            </form>
+
+            <div class="controls">
+                <div class="controls-left">
+                    <div class="filter-wrapper">
+                        <label for="filter-select">Filter:</label>
+                        <select id="filter-select">
+                            <option value="all">Semua</option>
+                            <option value="pending">Belum Selesai</option>
+                            <option value="completed">Selesai</option>
+                        </select>
+                    </div>
+                    <div class="search-wrapper">
+                         <input type="search" id="search-input" placeholder="Cari tugas..." autocomplete="off">
+                    </div>
+                </div>
+                <button class="btn btn-delete-all" id="delete-all-btn">Hapus Semua</button>
+            </div>
+
+            <div class="table-container">
+                <table id="todo-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="task">Tugas</th>
+                            <th data-sort="date">Tgl. Selesai</th>
+                            <th>Status</th>
+                            <th class="text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="todo-list-body">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            Made by Love - Deni Riyono | 2025 - Revou Mini Course
+        </footer>
+        
+    </div> <script src="js/script.js"></script>
+</body>
+</html>

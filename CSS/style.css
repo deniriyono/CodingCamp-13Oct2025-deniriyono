@@ -1,0 +1,358 @@
+/* --- Reset & Global --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1f2937, #111827);
+    color: #f3f4f6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Tata Letak Utama (BARU) --- */
+.app-wrapper {
+    max-width: 1200px; /* Lebar maksimum untuk app */
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+}
+
+/* 1. Nav & Logo (BARU) */
+.app-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.logo svg {
+    stroke: #a855f7; /* Warna gradient */
+}
+
+/* 2. Dashboard (BARU) */
+.dashboard {
+    display: grid;
+    /* Kolom responsif, minimal 200px */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-card h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #9ca3af;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-card .value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Warna-warni untuk nilai dashboard */
+#total-tasks-val { color: #8b5cf6; }
+#completed-tasks-val { color: #22c55e; }
+#pending-tasks-val { color: #f97316; }
+#progress-val { color: #3b82f6; }
+
+
+/* 3. Kontainer Utama (Form & Tabel) */
+.container {
+    padding: 2rem;
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* --- Form Input --- */
+#todo-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Input untuk Text, DateTime, Select, dan Search */
+input[type="text"],
+input[type="datetime-local"],
+input[type="search"],
+select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    color: #f3f4f6;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+input::placeholder { color: #9ca3af; }
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+/* --- Tombol --- */
+.btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-add {
+    background: linear-gradient(to right, #8b5cf6, #ec4899);
+    font-size: 1.5rem;
+    padding: 0.6rem 1.25rem;
+}
+.btn-add:hover {
+    opacity: 0.9;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+}
+
+/* --- Kontrol (Filter, Search, Delete) --- */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+
+.controls-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+.filter-wrapper, .search-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.filter-wrapper label {
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+.search-wrapper {
+    flex-grow: 1; /* Search bar mengambil sisa ruang */
+    min-width: 200px;
+}
+
+#filter-select {
+    padding: 0.5rem 0.75rem;
+}
+#search-input {
+    padding: 0.5rem 0.75rem;
+}
+
+.btn-delete-all {
+    background-color: #ef4444;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+}
+.btn-delete-all:hover {
+    background-color: #dc2626;
+}
+
+/* --- Styling Tabel --- */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#todo-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+#todo-table thead {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#todo-table th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-weight: 500;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+/* Style untuk Sorting (BARU) */
+th[data-sort] {
+    cursor: pointer;
+    position: relative;
+    user-select: none; /* Cegah teks terseleksi saat diklik */
+}
+
+/* Panah sorting (tersembunyi by default) */
+th[data-sort]::after {
+    content: '';
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    opacity: 0.4;
+    content: '▲'; /* Panah atas */
+    transform: translateY(-70%) scale(0.8);
+}
+th[data-sort].sort-desc::after {
+    content: '▼'; /* Panah bawah */
+    transform: translateY(-30%) scale(0.8);
+}
+/* Tampilkan panah hanya di kolom aktif */
+th[data-sort].active-sort::after {
+    opacity: 1;
+    color: #a855f7;
+}
+
+#todo-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease;
+}
+#todo-table tbody tr:last-child { border-bottom: none; }
+#todo-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.05); }
+#todo-table td {
+    padding: 1rem;
+    vertical-align: middle;
+    color: #f3f4f6;
+    font-size: 0.95rem;
+}
+
+#todo-table tbody tr.completed td:first-child {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* Baris Kosong */
+.empty-row td {
+    text-align: center;
+    color: #9ca3af;
+    padding: 2rem;
+    font-style: italic;
+}
+
+/* Badge Status */
+.status-badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+}
+.status-pending {
+    background-color: rgba(249, 115, 22, 0.15);
+    color: #f97316;
+}
+.status-completed {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+}
+
+/* Tombol Aksi dalam Tabel */
+.cell-action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.btn-action {
+    background: transparent;
+    border: 1px solid;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+.btn-complete { color: #22c55e; border-color: #22c55e; }
+.btn-complete:hover { background: rgba(34, 197, 94, 0.1); }
+tr.completed .btn-complete { color: #f97316; border-color: #f97316; }
+tr.completed .btn-complete:hover { background: rgba(249, 115, 22, 0.1); }
+.btn-delete { color: #ef4444; border-color: #ef4444; }
+.btn-delete:hover { background: rgba(239, 68, 68, 0.1); }
+
+/* Utility */
+.text-right { text-align: right; }
+
+/* --- Media Query untuk Mobile --- */
+@media (max-width: 768px) {
+    .app-wrapper {
+        padding: 1rem;
+    }
+    .container {
+        padding: 1.5rem 1rem;
+    }
+    .controls-left {
+        width: 100%;
+    }
+    .btn-delete-all {
+        width: 100%;
+    }
+}
+@media (max-width: 600px) {
+    #todo-form { flex-direction: column; }
+}
+
+.app-footer {
+    text-align: center;
+    padding: 2rem 1rem 1rem 1rem; /* Padding atas lebih besar */
+    font-size: 0.85rem;
+    color: #6b7280; /* Abu-abu */
+}
