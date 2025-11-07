@@ -5,13 +5,85 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-gradient: linear-gradient(135deg, #1f2937, #111827);
+    --text-color: #f3f4f6;
+    --logo-color: #ffffff;
+    --accent-color: #a855f7;
+    --card-bg: rgba(30, 41, 59, 0.6);
+    --card-border: rgba(255, 255, 255, 0.15);
+    --card-title: #9ca3af;
+    --container-bg: rgba(30, 41, 59, 0.6);
+    --container-border: rgba(255, 255, 255, 0.15);
+    --input-bg: rgba(0, 0, 0, 0.3);
+    --input-color: #f3f4f6;
+    --input-border: rgba(255, 255, 255, 0.2);
+    --input-placeholder: #9ca3af;
+    --control-bg: rgba(0, 0, 0, 0.15);
+    --table-container-bg: rgba(0, 0, 0, 0.2);
+    --thead-bg: rgba(0, 0, 0, 0.3);
+    --th-color: #cbd5e1;
+    --tbody-text-color: #f3f4f6;
+    --tr-hover-bg: rgba(255, 255, 255, 0.05);
+    --row-border: rgba(255, 255, 255, 0.1);
+    --muted-text: #9ca3af;
+    --status-pending-bg: rgba(249, 115, 22, 0.15);
+    --status-pending-color: #f97316;
+    --status-completed-bg: rgba(34, 197, 94, 0.15);
+    --status-completed-color: #22c55e;
+    --delete-btn-bg: #ef4444;
+    --delete-btn-bg-hover: #dc2626;
+    --footer-color: #6b7280;
+    --calendar-filter: invert(1);
+    --toggle-bg: rgba(255, 255, 255, 0.08);
+    --toggle-border: rgba(255, 255, 255, 0.25);
+    --toggle-color: #f3f4f6;
+    --toggle-hover-bg: rgba(255, 255, 255, 0.16);
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1f2937, #111827);
-    color: #f3f4f6;
+    background: var(--bg-gradient);
+    color: var(--text-color);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.light-theme {
+    --bg-gradient: linear-gradient(135deg, #f9fafb, #e5e7eb);
+    --text-color: #111827;
+    --logo-color: #1f2937;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-border: rgba(15, 23, 42, 0.08);
+    --card-title: #6b7280;
+    --container-bg: rgba(255, 255, 255, 0.85);
+    --container-border: rgba(15, 23, 42, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --input-color: #111827;
+    --input-border: rgba(15, 23, 42, 0.1);
+    --input-placeholder: #9ca3af;
+    --control-bg: rgba(15, 23, 42, 0.05);
+    --table-container-bg: rgba(255, 255, 255, 0.9);
+    --thead-bg: rgba(15, 23, 42, 0.08);
+    --th-color: #4b5563;
+    --tbody-text-color: #111827;
+    --tr-hover-bg: rgba(15, 23, 42, 0.05);
+    --row-border: rgba(15, 23, 42, 0.08);
+    --muted-text: #6b7280;
+    --status-pending-bg: rgba(249, 115, 22, 0.12);
+    --status-pending-color: #c2410c;
+    --status-completed-bg: rgba(34, 197, 94, 0.12);
+    --status-completed-color: #15803d;
+    --delete-btn-bg: #dc2626;
+    --delete-btn-bg-hover: #b91c1c;
+    --footer-color: #4b5563;
+    --calendar-filter: invert(0);
+    --toggle-bg: rgba(15, 23, 42, 0.05);
+    --toggle-border: rgba(15, 23, 42, 0.12);
+    --toggle-color: #1f2937;
+    --toggle-hover-bg: rgba(15, 23, 42, 0.1);
 }
 
 /* --- Tata Letak Utama (BARU) --- */
@@ -35,11 +107,30 @@ body {
     gap: 0.75rem;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--logo-color);
 }
 
 .logo svg {
-    stroke: #a855f7; /* Warna gradient */
+    stroke: var(--accent-color); /* Warna gradient */
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--toggle-border);
+    background: var(--toggle-bg);
+    color: var(--toggle-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--toggle-hover-bg);
 }
 
 /* 2. Dashboard (BARU) */
@@ -52,8 +143,8 @@ body {
 }
 
 .dashboard-card {
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -62,7 +153,7 @@ body {
 .dashboard-card h3 {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #9ca3af;
+    color: var(--card-title);
     text-transform: uppercase;
     margin-bottom: 0.5rem;
 }
@@ -83,11 +174,11 @@ body {
 /* 3. Kontainer Utama (Form & Tabel) */
 .container {
     padding: 2rem;
-    background: rgba(30, 41, 59, 0.6);
+    background: var(--container-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--container-border);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
@@ -113,14 +204,14 @@ select {
     padding: 0.85rem 1rem;
     font-size: 0.95rem;
     font-family: 'Poppins', sans-serif;
-    color: #f3f4f6;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--input-color);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
     border-radius: 8px;
     transition: all 0.3s ease;
 }
 
-input::placeholder { color: #9ca3af; }
+input::placeholder { color: var(--input-placeholder); }
 
 input:focus, select:focus {
     outline: none;
@@ -129,7 +220,7 @@ input:focus, select:focus {
 }
 
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+    filter: var(--calendar-filter);
     cursor: pointer;
     opacity: 0.7;
 }
@@ -166,7 +257,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     gap: 1rem;
     margin-bottom: 1.5rem;
     padding: 1rem;
-    background: rgba(0, 0, 0, 0.15);
+    background: var(--control-bg);
     border-radius: 8px;
 }
 
@@ -199,12 +290,12 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 }
 
 .btn-delete-all {
-    background-color: #ef4444;
+    background-color: var(--delete-btn-bg);
     font-size: 0.9rem;
     padding: 0.6rem 1rem;
 }
 .btn-delete-all:hover {
-    background-color: #dc2626;
+    background-color: var(--delete-btn-bg-hover);
 }
 
 /* --- Styling Tabel --- */
@@ -212,7 +303,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     width: 100%;
     overflow-x: auto;
     border-radius: 8px;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--table-container-bg);
 }
 
 #todo-table {
@@ -222,14 +313,14 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 }
 
 #todo-table thead {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--thead-bg);
 }
 
 #todo-table th {
     padding: 0.85rem 1rem;
     text-align: left;
     font-weight: 500;
-    color: #cbd5e1;
+    color: var(--th-color);
     text-transform: uppercase;
     font-size: 0.8rem;
     letter-spacing: 0.5px;
@@ -265,15 +356,15 @@ th[data-sort].active-sort::after {
 }
 
 #todo-table tbody tr {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--row-border);
     transition: background-color 0.2s ease;
 }
 #todo-table tbody tr:last-child { border-bottom: none; }
-#todo-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.05); }
+#todo-table tbody tr:hover { background-color: var(--tr-hover-bg); }
 #todo-table td {
     padding: 1rem;
     vertical-align: middle;
-    color: #f3f4f6;
+    color: var(--tbody-text-color);
     font-size: 0.95rem;
 }
 
@@ -285,7 +376,7 @@ th[data-sort].active-sort::after {
 /* Baris Kosong */
 .empty-row td {
     text-align: center;
-    color: #9ca3af;
+    color: var(--muted-text);
     padding: 2rem;
     font-style: italic;
 }
@@ -299,12 +390,12 @@ th[data-sort].active-sort::after {
     display: inline-block;
 }
 .status-pending {
-    background-color: rgba(249, 115, 22, 0.15);
-    color: #f97316;
+    background-color: var(--status-pending-bg);
+    color: var(--status-pending-color);
 }
 .status-completed {
-    background-color: rgba(34, 197, 94, 0.15);
-    color: #22c55e;
+    background-color: var(--status-completed-bg);
+    color: var(--status-completed-color);
 }
 
 /* Tombol Aksi dalam Tabel */
@@ -354,5 +445,5 @@ tr.completed .btn-complete:hover { background: rgba(249, 115, 22, 0.1); }
     text-align: center;
     padding: 2rem 1rem 1rem 1rem; /* Padding atas lebih besar */
     font-size: 0.85rem;
-    color: #6b7280; /* Abu-abu */
+    color: var(--footer-color); /* Abu-abu */
 }
