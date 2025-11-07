@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const todoListBody = document.getElementById('todo-list-body');
     const filterSelect = document.getElementById('filter-select');
     const deleteAllBtn = document.getElementById('delete-all-btn');
-    
+
     // Elemen DOM Baru
     const searchInput = document.getElementById('search-input');
     const tableHead = document.querySelector('#todo-table thead');
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const completedTasksVal = document.getElementById('completed-tasks-val');
     const pendingTasksVal = document.getElementById('pending-tasks-val');
     const progressVal = document.getElementById('progress-val');
+    const themeToggleBtn = document.getElementById('theme-toggle');
 
     // --- State Aplikasi ---
     let todos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -24,18 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
         column: 'date', // Kolom default untuk sort
         order: 'asc'    // Urutan default
     };
+    const THEME_STORAGE_KEY = 'taskmaster-theme';
 
     // --- Event Listeners ---
     todoForm.addEventListener('submit', addTodo);
     todoListBody.addEventListener('click', handleTodoClick);
     filterSelect.addEventListener('change', renderTodos);
     deleteAllBtn.addEventListener('click', deleteAllTodos);
-    
+
     // Listener Baru
     searchInput.addEventListener('input', handleSearch);
     tableHead.addEventListener('click', handleSort);
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleThemeMode);
+    }
 
     // Render awal saat load
+    initializeTheme();
     renderTodos();
 
     // --- Fungsi-Fungsi ---
@@ -210,6 +216,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Fungsi Baru ---
+
+    // (BARU) Inisialisasi tema berdasarkan preferensi terakhir
+    function initializeTheme() {
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+        } else if (savedTheme === 'dark') {
+            document.body.classList.remove('light-theme');
+        }
+        updateThemeToggleLabel();
+    }
+
+    // (BARU) Mengubah tema aplikasi
+    function toggleThemeMode() {
+        document.body.classList.toggle('light-theme');
+        const isLight = document.body.classList.contains('light-theme');
+        localStorage.setItem(THEME_STORAGE_KEY, isLight ? 'light' : 'dark');
+        updateThemeToggleLabel();
+    }
+
+    // (BARU) Memperbarui label tombol tema
+    function updateThemeToggleLabel() {
+        if (!themeToggleBtn) return;
+        const isLight = document.body.classList.contains('light-theme');
+        themeToggleBtn.innerHTML = isLight ? '🌙 Mode Gelap' : '☀️ Mode Terang';
+        themeToggleBtn.setAttribute('aria-label', isLight ? 'Beralih ke mode gelap' : 'Beralih ke mode terang');
+    }
 
     // (BARU) Menangani input search
     function handleSearch(e) {
